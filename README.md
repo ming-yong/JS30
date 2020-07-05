@@ -17,4 +17,6 @@ is a series of projects built with vanilla JS based on [JavaScript 30 by WesBos]
 13. **Photo booth** using web cam with different filters and downloadable photo. See [demo](https://ming-yong.github.io/JS30-19-photo-booth/) and [note](./notes/19-photo-booth.md).
 14. Note with **speech recognition**. See [demo](https://ming-yong.github.io/JS30-20-voice-note/) and [note](./notes/20-voice-note.md).
 15. A **"*follow along links*" effect**. See [demo](https://ming-yong.github.io/JS30/22-flashlight/) and [note](./notes/22-flashlight.md).
-16. **Speech synthesis** with control over rate, pitch, content.  See [demo](https://ming-yong.github.io/JS30/23-speech-synthesis/) and [note](./notes/23-speech-synthesis.md).
+16. **Speech synthesis** with control over rate, pitch, content. See [demo](https://ming-yong.github.io/JS30/23-speech-synthesis/) and [note](./notes/23-speech-synthesis.md).
+17. Webpage with **sticky nav**. See [demo](https://ming-yong.github.io/JS30/24-sticky-nav/) and [note](./notes/24-sticky-nav.md).
+18. **Follow along dropdown** when hover over element. See [demo](https://ming-yong.github.io/JS30/26-follow-along-dropdown/) and [note](./notes/26-follow-along-dropdown.md).
