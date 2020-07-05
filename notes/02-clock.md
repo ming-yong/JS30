@@ -1,6 +1,6 @@
 # 02-clock
 
-![clock demo](../images/clock.gif)
+![demo gif](../images/clock.gif)
 
 [Back to home page](https://ming-yong.github.io/JS30/)
 

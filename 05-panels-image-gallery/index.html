@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<link rel="stylesheet" href="./main.css" />
+		<title>JS30 - panels image gallery</title>
+		<style>
+			@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+
+			* {
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+			}
+
+			html {
+				height: 100%;
+				width: 100%;
+			}
+
+			body {
+				height: 100%;
+				width: 100%;
+				font-family: "Montserrat", sans-serif;
+				display: flex;
+			}
+
+			.div_panels {
+				height: 100%;
+				width: 100%;
+				display: flex;
+				overflow: hidden;
+			}
+
+			.div_panel {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex: 1;
+				flex-direction: column;
+				background-position: center;
+				background-size: cover;
+				text-align: center;
+				transition: all 0.4s ease-in-out;
+			}
+
+			.panel_1 {
+				background-image: url("./images/spring.jpg");
+			}
+			.panel_2 {
+				background-image: url("./images/summer.jpg");
+			}
+			.panel_3 {
+				background-image: url("./images/fall.jpg");
+			}
+			.panel_4 {
+				background-image: url("./images/winter.jpg");
+			}
+
+			.div_panel > * {
+				font-size: 1rem;
+				color: white;
+				background: rgba(0, 0, 0, 0.26);
+				flex: 1 0 auto; /* grow shrink basis */
+				width: 100%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				font-size: 1rem;
+				transition: transform 0.5s;
+			}
+
+			.div_panel > *:first-child {
+				font-size: 3rem;
+			}
+
+			.div_panel.open-active > *:first-child {
+				transform: translateY(-100%);
+			}
+
+			.div_panel.open-active > *:last-child {
+				transform: translateY(100%);
+			}
+
+			.div_panel.open {
+				flex: 4;
+			}
+
+			@media only screen and (max-width: 600px) {
+				.div_panel > *:first-child {
+					font-size: 1.5rem;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="div_panels">
+			<div class="div_panel panel_1">
+				<p>Spring</p>
+				<p>Photo by Meriç Dağlı on Unsplash</p>
+			</div>
+			<div class="div_panel panel_2">
+				<p>Summer</p>
+				<p>Photo by Vicko Mozara on Unsplash</p>
+			</div>
+			<div class="div_panel panel_3">
+				<p>Fall</p>
+				<p>Photo by Aaron Burden on Unsplash</p>
+			</div>
+			<div class="div_panel panel_4">
+				<p>Winter</p>
+				<p>Photo by Ian Keefe on Unsplash</p>
+			</div>
+		</div>
+	</body>
+
+	<script>
+		const panels = document.querySelectorAll(".div_panel");
+
+		function toggleOpen() {
+			this.classList.toggle("open");
+		}
+
+		function toggleActive() {
+			this.classList.toggle("open-active");
+		}
+
+		panels.forEach((panel) => panel.addEventListener("click", toggleOpen));
+		panels.forEach((panel) => panel.addEventListener("transitionend", toggleActive));
+	</script>
+</html>

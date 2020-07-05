@@ -1,6 +1,6 @@
 # 01-drum kit
 
-![drum kit demo](../images/drumKit.gif)
+![demo gif](../images/drumKit.gif)
 
 [Back to home page](https://ming-yong.github.io/JS30/)
 

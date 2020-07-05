@@ -1,6 +1,6 @@
 # 03-font adjuster
 
-![drum kit demo](../images/fontAdjuster.gif)
+![demo gif](../images/fontAdjuster.gif)
 
 [Back to home page](https://ming-yong.github.io/JS30/)
 
