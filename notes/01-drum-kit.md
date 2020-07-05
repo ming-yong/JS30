@@ -1,6 +1,6 @@
 # JS30-01-drum kit
 
-[Back to home page](./README.md)
+[Back to home page](https://ming-yong.github.io/JS30/)
 
 ## User stories
 

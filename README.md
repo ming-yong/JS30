@@ -1,8 +1,5 @@
 # JS30
 
-## JS30-01-drum kit
+Projects built with vanilla JS and based on [JavaScript 30 by WesBos](https://github.com/wesbos/JavaScript30).
 
-![demonstration of drum kit](./images/drumKit.gif)
-
-- Drum kit play with PC keyboard. Built with vanilla JS and based on [JavaScript 30 by WesBos](https://github.com/wesbos/JavaScript30).
-- [Notes](./notes/01-drum-kit.md).
+**1. drum kit**: Drum kit play with PC keyboard. See [demo](https://ming-yong.github.io/JS30/01-drum-kit/) and [notes](./notes/01-drum-kit.md).
