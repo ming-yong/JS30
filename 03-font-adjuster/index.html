@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<link rel="stylesheet" href="./main.css" />
+		<title>JS30 - font adjuster</title>
+	</head>
+	<body>
+		<div class="div_textBox">
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur illo cupiditate sequi
+			quibusdam? Consequuntur dolore ea accusantium at! Non, voluptatem eaque pariatur eius quis
+			suscipit est consequuntur quas nam ut! Pariatur, laborum, aperiam velit ratione iure ab
+			eveniet sunt asperiores placeat tenetur iusto vero vitae. Porro sint quo magnam modi quaerat
+			sit, ea vitae debitis quod eos illum veritatis libero. Ratione culpa sapiente eius quidem illo
+			voluptates vitae, reprehenderit est modi. Iste, dicta. Optio aliquid quaerat ipsa tempora
+			alias, repellat perferendis dicta voluptatibus nesciunt quas illum, impedit, veniam
+			dignissimos neque.
+		</div>
+		<div class="div_adjuster">
+			<h1>Use the range slider to adjust value!</h1>
+			<div class="div_valueBox">
+				<input type="range" min="1" max="50" value="20" name="font-size" class="input" />
+				<div class="div_value">font size: <span class="span_fontSize">20</span>px</div>
+			</div>
+			<!--fontSize-->
+			<div class="div_valueBox">
+				<input type="range" min="1" max="50" value="25" name="line-height" class="input" />
+				<div class="div_value">line height: <span class="span_lineHeight">25</span>px</div>
+			</div>
+			<!--lineHeight-->
+			<div class="div_valueBox">
+				<input type="range" min="1" max="50" value="1" name="word-spacing" class="input" />
+				<div class="div_value">word spacing: <span class="span_wordSpacing">1</span>px</div>
+			</div>
+			<!--wordSpacing-->
+			<div class="div_valueBox">
+				<input type="range" min="1" max="50" value="1" name="letter-spacing" class="input" />
+				<div class="div_value">letter spacing: <span class="span_letterSpacing">1</span>px</div>
+			</div>
+			<!--letterSpacing-->
+		</div>
+		<!--adjuster-->
+	</body>
+
+	<script src="main.js"></script>
+</html>
