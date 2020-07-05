@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>JS30 - taco list</title>
+		<style>
+			@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+
+			* {
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+			}
+
+			html {
+				height: 100%;
+				width: 100%;
+			}
+
+			body {
+				height: 100%;
+				width: 100%;
+				font-family: "Montserrat", sans-serif;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.div_list {
+				border: 2px solid black;
+				padding: 20px;
+				max-width: 350px;
+				background: rgba(255, 255, 255, 0.95);
+			}
+
+			h1 {
+				text-align: center;
+				margin: 0;
+			}
+
+			p {
+				text-align: center;
+			}
+
+			.ul_list {
+				margin: 0;
+				padding: 0;
+				text-align: left;
+				list-style: none;
+			}
+
+			.ul_list li {
+				border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+				padding: 10px 0;
+				display: flex;
+			}
+
+			.ul_list label {
+				flex: 1;
+				cursor: pointer;
+			}
+
+			.ul_list input {
+				display: none;
+			}
+
+			.ul_list input + label:before {
+				content: "⬜️";
+				margin-right: 10px;
+			}
+
+			.ul_list input:checked + label:before {
+				content: "🌮";
+			}
+
+			.form_addFilling {
+				margin-top: 20px;
+			}
+
+			.form_addFilling input {
+				padding: 10px;
+				outline: 0;
+				border: 1px solid rgba(0, 0, 0, 0.1);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="div_list">
+			<h1>Taco List</h1>
+			<p>What goes inside a taco?</p>
+			<ul class="ul_list"></ul>
+			<form class="form_addFilling">
+				<input type="text" name="item" placeholder="Enter your favorite filling" required />
+				<input type="submit" value="+ Add filling" />
+			</form>
+		</div>
+	</body>
+	<script>
+		const form = document.querySelector(".form_addFilling");
+		const ulList = document.querySelector(".ul_list");
+		let jsList = JSON.parse(localStorage.getItem("items")) || [];
+
+		function addItem(e) {
+			e.preventDefault(); //stop the page from refreshing
+			const input = this.querySelector("[name=item]").value;
+			const item = {
+				input,
+				done: false,
+				delete: false,
+			};
+			jsList.push(item);
+			populateList(jsList, ulList);
+			localStorage.setItem("items", JSON.stringify(jsList));
+			this.reset();
+		}
+
+		function populateList(jsList = [], ulList) {
+			ulList.innerHTML = jsList
+				.map((item, index) => {
+					return `
+					<li>
+						<input type="checkbox" data-index=${index} id="item${index}" ${item.done ? "checked" : ""}/>
+						<label for="item${index}">${item.input}</label>
+						<button class="btn_delete" type="button" data-index=${index}>❌</button>
+					</li>
+				`;
+				})
+				.join("");
+		}
+
+		//event delegation
+		function toggleDone(e) {
+			if (!e.target.matches("input")) return; //skip this unless it is an input
+			const element = e.target;
+			const index = element.dataset.index;
+			jsList[index].done = !jsList[index].done;
+			localStorage.setItem("items", JSON.stringify(jsList));
+			populateList(jsList, ulList);
+		}
+
+		function deleteItem(e) {
+			if (!e.target.matches("button")) return; //skip this unless it is a button
+			const element = e.target;
+			const index = element.dataset.index;
+			jsList[index].delete = !jsList[index].delete;
+			jsList = jsList.filter((item) => !item.delete);
+			localStorage.setItem("items", JSON.stringify(jsList));
+			populateList(jsList, ulList);
+		}
+
+		form.addEventListener("submit", addItem);
+		ulList.addEventListener("click", toggleDone);
+		ulList.addEventListener("click", deleteItem);
+		populateList(jsList, ulList);
+	</script>
+</html>

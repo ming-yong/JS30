@@ -10,4 +10,6 @@ is a series of projects built with vanilla JS based on [JavaScript 30 by WesBos]
 6. **Canvas** with size adjustable brushes and eraser. See [demo](https://ming-yong.github.io/JS30/08-canvas/) and [note](./notes/08-canvas.md).
 7. **Checklist** that allows multiple check when holding Shift. See [demo](https://ming-yong.github.io/JS30/10-checklist/) and [note](./notes/10-checklist.md).
 8. **Video player** with custom layout. See [demo](https://ming-yong.github.io/JS30/11-video-player/) and [note](./notes/11-video-player.md).
-9. A random gif generator using **key sequence detection** based on [The Coding Train tutorials(those about using api keys and deploying)](https://www.youtube.com/watch?v=Rz886HkV1j4). See [demo](https://give-me-gif.herokuapp.com/) and [note](./notes/112-give-me-gif.md).
+9. A random gif generator using **key sequence detection** based on [The Coding Train tutorials(those about using api keys and deploying)](https://www.youtube.com/watch?v=Rz886HkV1j4). See [demo](https://js30-give-me-gif.herokuapp.com/) and [note](./notes/12-give-me-gif.md).
+10. **Slide in/out effect** on scroll. See [demo](https://ming-yong.github.io/JS30/13-slide-in-on-scroll/) and [note](./notes/13-slide-in-on-scroll.md).
+11. Checklist that "remember" the check status after refresh using **local storage**. See [demo](https://ming-yong.github.io/JS30/15-taco-list/) and [note](./notes/15-taco-list.md).
