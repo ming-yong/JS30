@@ -13,10 +13,14 @@ is a series of projects built with vanilla JS based on [JavaScript 30 by WesBos]
 9. A random gif generator using **key sequence detection** based on [The Coding Train tutorials(those about using api keys and deploying)](https://www.youtube.com/watch?v=Rz886HkV1j4). See [demo](https://js30-give-me-gif.herokuapp.com/) and [note](./notes/12-give-me-gif.md).
 10. **Slide in/out effect** on scroll. See [demo](https://ming-yong.github.io/JS30/13-slide-in-on-scroll/) and [note](./notes/13-slide-in-on-scroll.md).
 11. Checklist that "remember" the check status after refresh using **local storage**. See [demo](https://ming-yong.github.io/JS30/15-taco-list/) and [note](./notes/15-taco-list.md).
-12. CSS text **shadow effect** during mouse move. See [demo](https://ming-yong.github.io/JS30/16-boo/) and [note](./notes/16-boo.md).
+12. CSS text **shadow effect** during mouse move. See [demo](https://ming-yong.github.io/JS30/16-Boo/) and [note](./notes/16-Boo.md).
 13. **Photo booth** using web cam with different filters and downloadable photo. See [demo](https://ming-yong.github.io/JS30-19-photo-booth/) and [note](./notes/19-photo-booth.md).
 14. Note with **speech recognition**. See [demo](https://ming-yong.github.io/JS30-20-voice-note/) and [note](./notes/20-voice-note.md).
 15. A **"*follow along links*" effect**. See [demo](https://ming-yong.github.io/JS30/22-flashlight/) and [note](./notes/22-flashlight.md).
 16. **Speech synthesis** with control over rate, pitch, content. See [demo](https://ming-yong.github.io/JS30/23-speech-synthesis/) and [note](./notes/23-speech-synthesis.md).
 17. Webpage with **sticky nav**. See [demo](https://ming-yong.github.io/JS30/24-sticky-nav/) and [note](./notes/24-sticky-nav.md).
 18. **Follow along dropdown** when hover over element. See [demo](https://ming-yong.github.io/JS30/26-follow-along-dropdown/) and [note](./notes/26-follow-along-dropdown.md).
+19. **Click, and drag to scroll** effect. See [demo](https://ming-yong.github.io/JS30/27-click-drag-scroll/) and [note](./notes/27-click-drag-scroll.md).
+20. **Video speed controller** using mouse hover. See [demo](https://ming-yong.github.io/JS30/28-speed-controller/) and [note](./notes/28-speed-controller.md).
+21. **Countdown clock** with built-in and custom time frame. See [demo](https://ming-yong.github.io/JS30/29-countdown-clock/) and [note](./notes/29-countdown-clock.md).
+22. **Whack a mole** browser game using mouse. See [demo](https://ming-yong.github.io/JS30/30-whack-a-mole/) and [note](./notes/30-whack-a-mole.md).

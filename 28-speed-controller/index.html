@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>JS30 - speed controller</title>
+		<style>
+			@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+
+			* {
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+			}
+
+			html {
+				height: 100%;
+				width: 100%;
+			}
+
+			body {
+				height: 100%;
+				width: 100%;
+				font-family: "Montserrat", sans-serif;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.div_wrapper {
+				width: 850px;
+				display: flex;
+			}
+
+			video {
+				box-shadow: 0 0 1px 3px rgba(0, 0, 0, 0.1);
+			}
+
+			.div_speed {
+				background: #efefef;
+				flex: 1;
+				display: flex;
+				align-items: flex-start;
+				margin: 10px;
+				border-radius: 50px;
+				box-shadow: 0 0 1px 3px rgba(0, 0, 0, 0.1);
+				overflow: hidden;
+			}
+
+			.div_speed-bar {
+				width: 100%;
+				background: linear-gradient(-170deg, #2376ae 0%, #c16ecf 100%);
+				text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				padding: 2px;
+				color: white;
+				height: 16.3%;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="div_wrapper">
+			<video class="flex" width="765" height="430" src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" loop controls></video>
+			<div class="div_speed">
+				<div class="div_speed-bar">1×</div>
+			</div>
+		</div>
+	</body>
+	<script>
+		const speed = document.querySelector(".div_speed");
+		const bar = document.querySelector(".div_speed-bar");
+		const video = document.querySelector(".flex");
+
+		function handleMove(e) {
+			//Controller UI
+			const y = e.pageY - this.offsetTop;
+			const percent = y / this.offsetHeight;
+			const min = 0.4;
+			const max = 4;
+			const height = Math.round(percent * 100) + "%";
+			const playbackRate = percent * (max - min) + min;
+			bar.style.height = height;
+			bar.textContent = playbackRate.toFixed(2) + "x";
+			//Setting speed
+			video.playbackRate = playbackRate;
+		}
+
+		speed.addEventListener("mousemove", handleMove);
+	</script>
+</html>
