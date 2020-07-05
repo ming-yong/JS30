@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<link rel="stylesheet" href="./main.css" />
+		<title>JS30 - Clock</title>
+		<style>
+			@import url("https://fonts.googleapis.com/css?family=Montserrat:700&display=swap");
+
+			* {
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+			}
+
+			html {
+				height: 100%;
+				width: 100%;
+			}
+
+			body {
+				height: 100%;
+				width: 100%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				background: white;
+				font-family: "Montserrat", sans-serif;
+			}
+
+			.div_clock {
+				width: 500px;
+				height: 500px;
+				background: white;
+				border: 10px solid black;
+				border-radius: 50%;
+				position: relative;
+			}
+
+			.div_dayNight {
+				height: 10%;
+				width: 10%;
+				position: absolute;
+				top: 45%;
+				left: 45%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				border: 2px solid black;
+				border-radius: 50%;
+			}
+
+			.div_hand {
+				height: 2%;
+				background: black;
+				border: 2px solid black;
+				color: black;
+				font-size: 2rem;
+				position: absolute;
+				top: 50%;
+				transform: rotate(90deg);
+				transform-origin: 100%;
+				transition: all 0.5s;
+				transition-timing-function: cubic-bezier(0, 1.21, 0, 1.14);
+			}
+
+			.div_hourHand {
+				width: 30%;
+				left: 20%;
+				background: red;
+			}
+
+			.div_minuteHand {
+				background: orange;
+				width: 40%;
+				left: 10%;
+			}
+
+			.div_secondHand {
+				background: green;
+				width: 45%;
+				left: 5%;
+			}
+
+			@media screen and (max-width: 600px) {
+				.div_clock {
+					width: 250px;
+					height: 250px;
+				}
+				.div_hand {
+					height: 4%;
+				}
+
+				.div_dayNight {
+					height: 20%;
+					width: 20%;
+					top: 45%;
+					left: 40%;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="div_clock">
+			<div class="div_hand div_secondHand"></div>
+			<div class="div_hand div_minuteHand"></div>
+			<div class="div_hand div_hourHand"></div>
+			<div class="div_dayNight"></div>
+		</div>
+	</body>
+
+	<script>
+		const secondHand = document.querySelector(".div_secondHand");
+		const minuteHand = document.querySelector(".div_minuteHand");
+		const hourHand = document.querySelector(".div_hourHand");
+		const dayNight = document.querySelector(".div_dayNight");
+
+		function displaySun() {
+			dayNight.textContent = "☀️";
+			dayNight.style.background = "#00ced1";
+		}
+
+		function displayMoon() {
+			dayNight.textContent = "🌙";
+			dayNight.style.background = "#008B8B";
+		}
+
+		function setDate() {
+			const now = new Date();
+			const second = now.getSeconds();
+			if (second == 0) {
+				secondHand.style.transition = "none";
+			}
+			const secondDegree = (second / 60) * 360 + 90;
+			secondHand.textContent = `${second}`;
+			secondHand.style.transform = `rotate(${secondDegree}deg)`;
+
+			const minute = now.getMinutes();
+			const minuteDegree = (minute / 60) * 360 + 90;
+			if (minute == 0) {
+				minuteHand.style.transition = "none";
+			}
+			minuteHand.textContent = `${minute}`;
+			minuteHand.style.transform = `rotate(${minuteDegree}deg)`;
+
+			const hour = now.getHours();
+			const hourDegree = (hour / 12) * 360 + 90;
+			if (hour == 0) {
+				hourHand.style.transition = "none";
+			}
+			hourHand.textContent = `${hour}`;
+			hourHand.style.transform = `rotate(${hourDegree}deg)`;
+
+			if (hour < 19 && hour > 7) {
+				displaySun();
+			} else {
+				displayMoon();
+			}
+		}
+
+		setInterval(setDate, 1000);
+	</script>
+</html>
