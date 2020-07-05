@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>JS30 - boo</title>
+		<style>
+			@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+
+			* {
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+			}
+
+			html {
+				height: 100%;
+				width: 100%;
+			}
+
+			body {
+				height: 100%;
+				width: 100%;
+				font-family: "Montserrat", sans-serif;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				background: black;
+			}
+
+			.div_ghost {
+				font-size: 3rem;
+				box-shadow: 10px 10px 0 rgba(0, 0, 0, 0);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="div_ghost">👻</div>
+	</body>
+	<script>
+		const body = document.querySelector("body");
+		const ghost = document.querySelector(".div_ghost");
+		const fly = 200; //200px
+
+		function boo(e) {
+			const { offsetWidth: bodyWidth, offsetHeight: bodyHeight } = body;
+			let { offsetX: cursorX, offsetY: cursorY } = e;
+
+			//normalization
+			if (this !== e.target) {
+				//"this" is body
+				cursorX = cursorX + e.target.offsetLeft;
+				cursorY = cursorY + e.target.offsetTop;
+			}
+
+			const xFly = Math.round((cursorX / bodyWidth) * fly - fly / 2);
+			const yFly = Math.round((cursorY / bodyHeight) * fly - fly / 2);
+
+			ghost.style.textShadow = `
+			${xFly}px ${yFly}px 0 rgba(255,255,255,0.5),
+			${xFly * -1}px ${yFly * -1}px 0 rgba(255,255,0,0.5),
+			${yFly}px ${xFly}px 0 rgba(255,0,0,0.5),
+			${yFly * -1}px ${xFly * -1}px 0 rgba(0,0,255,0.5)
+			`;
+		}
+
+		body.addEventListener("mousemove", boo);
+	</script>
+</html>
