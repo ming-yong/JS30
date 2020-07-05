@@ -1,4 +1,4 @@
-# JS30-02-clock
+# 02-clock
 
 ![clock demo](../images/clock.gif)
 

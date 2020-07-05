@@ -6,17 +6,80 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 		<link rel="stylesheet" href="./main.css" />
 		<title>JS30 - font adjuster</title>
+		<style>
+			@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+
+			* {
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+			}
+
+			html {
+				height: 100%;
+				width: 100%;
+			}
+
+			body {
+				height: 100%;
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				font-family: "Montserrat", sans-serif;
+			}
+
+			:root {
+				--font-size: 20px;
+				--line-heigh: 25px;
+				--word-spacing: 1px;
+				--letter-spacing: 1px;
+			}
+
+			.div_textBox {
+				width: 50%;
+				border: 2px solid black;
+				padding: 1rem;
+				font-size: var(--font-size);
+				line-height: var(--line-height);
+				word-spacing: var(--word-spacing);
+				letter-spacing: var(--letter-spacing);
+			}
+
+			.div_adjuster {
+				margin: 1rem 0;
+				width: 50%;
+			}
+
+			h1 {
+				font-size: 1.5rem;
+				text-align: center;
+			}
+
+			.div_valueBox {
+				margin: 1rem 0;
+				width: 100%;
+				display: grid;
+				grid-template-columns: 50% 50%;
+				padding: 1rem;
+				border-bottom: 2px solid black;
+			}
+
+			.input {
+				grid-column: 1/2;
+			}
+
+			.div_value {
+				grid-column: 2/3;
+				text-align: center;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="div_textBox">
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur illo cupiditate sequi
-			quibusdam? Consequuntur dolore ea accusantium at! Non, voluptatem eaque pariatur eius quis
-			suscipit est consequuntur quas nam ut! Pariatur, laborum, aperiam velit ratione iure ab
-			eveniet sunt asperiores placeat tenetur iusto vero vitae. Porro sint quo magnam modi quaerat
-			sit, ea vitae debitis quod eos illum veritatis libero. Ratione culpa sapiente eius quidem illo
-			voluptates vitae, reprehenderit est modi. Iste, dicta. Optio aliquid quaerat ipsa tempora
-			alias, repellat perferendis dicta voluptatibus nesciunt quas illum, impedit, veniam
-			dignissimos neque.
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur illo cupiditate sequi quibusdam? Consequuntur dolore ea accusantium at! Non, voluptatem eaque pariatur eius quis suscipit est consequuntur quas nam ut! Pariatur, laborum, aperiam velit ratione iure ab eveniet sunt asperiores placeat tenetur iusto vero vitae. Porro sint quo magnam modi quaerat sit, ea vitae debitis quod
+			eos illum veritatis libero. Ratione culpa sapiente eius quidem illo voluptates vitae, reprehenderit est modi. Iste, dicta. Optio aliquid quaerat ipsa tempora alias, repellat perferendis dicta voluptatibus nesciunt quas illum, impedit, veniam dignissimos neque.
 		</div>
 		<div class="div_adjuster">
 			<h1>Use the range slider to adjust value!</h1>
@@ -44,5 +107,35 @@
 		<!--adjuster-->
 	</body>
 
-	<script src="main.js"></script>
+	<script>
+		const span_fontSize = document.querySelector(".span_fontSize");
+		const span_lineHeight = document.querySelector(".span_lineHeight");
+		const span_wordSpacing = document.querySelector(".span_wordSpacing");
+		const span_letterSpacing = document.querySelector(".span_letterSpacing");
+		const inputs = document.querySelectorAll(".div_valueBox input");
+
+		function handleUpdate() {
+			document.documentElement.style.setProperty(`--${this.name}`, this.value + "px");
+		}
+
+		function outputValue() {
+			switch (this.name) {
+				case "font-size":
+					span_fontSize.textContent = this.value;
+					break;
+				case "line-height":
+					span_lineHeight.textContent = this.value;
+					break;
+				case "word-spacing":
+					span_wordSpacing.textContent = this.value;
+					break;
+				case "letter-spacing":
+					span_letterSpacing.textContent = this.value;
+					break;
+			}
+		}
+
+		inputs.forEach((input) => input.addEventListener("input", handleUpdate));
+		inputs.forEach((input) => input.addEventListener("input", outputValue));
+	</script>
 </html>

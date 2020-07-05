@@ -1,4 +1,4 @@
-# JS30-01-drum kit
+# 01-drum kit
 
 ![drum kit demo](../images/drumKit.gif)
 

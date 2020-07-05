@@ -1,4 +1,4 @@
-# JS30-03-font adjuster
+# 03-font adjuster
 
 ![drum kit demo](../images/fontAdjuster.gif)
 
