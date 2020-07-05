@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>JS30 - video player</title>
+		<style>
+			@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+
+			* {
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+			}
+
+			html {
+				height: 100%;
+				width: 100%;
+			}
+
+			body {
+				height: 100%;
+				width: 100%;
+				font-family: "Montserrat", sans-serif;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				background: black;
+				color: white;
+			}
+
+			.div_wrapper {
+				height: 90%;
+				width: 50%;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+			}
+
+			video {
+				height: auto;
+				width: 100%;
+				margin: 2rem 0;
+				border: 2px solid white;
+			}
+
+			.div_controlPanel {
+				height: 40%;
+				width: 100%;
+				margin: 2rem 0;
+				border: 2px solid white;
+				border-radius: 30px;
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+				flex-wrap: wrap;
+			}
+
+			.control {
+				width: 45%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.p_description {
+				margin-right: 1rem;
+			}
+
+			.btn {
+				cursor: pointer;
+				border: 2px solid white;
+				border-radius: 5px;
+				padding: 0.5rem;
+				margin: 0.3rem;
+			}
+
+			.slider {
+				-webkit-appearance: none;
+				width: 100%;
+				height: 10px;
+				border-radius: 5px;
+				border: 2px solid white;
+				background: black;
+				outline: none;
+				-webkit-transition: 0.2s;
+				transition: opacity 0.2s;
+			}
+
+			.slider::-webkit-slider-thumb {
+				-webkit-appearance: none;
+				appearance: none;
+				width: 20px;
+				height: 20px;
+				border-radius: 50%;
+				border: 2px solid white;
+				background: black;
+				cursor: pointer;
+			}
+
+			.slider::-moz-range-thumb {
+				width: 20px;
+				height: 20px;
+				border-radius: 50%;
+				border: 2px solid white;
+				background: black;
+				cursor: pointer;
+			}
+
+			@media screen and (max-width: 800px) {
+				.div_wrapper {
+					width: 100%;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="div_wrapper">
+			<h1>Custom video player</h1>
+			<video class="video">
+				<source src="./bigBuckBunny.mp4" type="video/mp4" />
+				Your browser does not support the video tag.
+			</video>
+			<div class="div_controlPanel">
+				<div class="control div_progress">
+					<p class="p_description">Progress:</p>
+					<span class="span_progress">0%</span>
+				</div>
+				<!--progress-->
+				<div class="control">
+					<p class="p_description">Duration:</p>
+					<span class="span_duration"></span>
+				</div>
+				<!--duration-->
+				<div class="control div_play">
+					<p class="p_description">Play or Paused:</p>
+					<div class="btn div_btnPlay">🟢</div>
+				</div>
+				<!--play-->
+				<div class="control">
+					<p class="p_description">Skip:</p>
+					<div class="btn div_back5s" data-skip="-5">-5s</div>
+					<div class="btn div_back30s" data-skip="-30">-30s</div>
+					<div class="btn div_forward5s" data-skip="5">+5s</div>
+					<div class="btn div_forward30s" data-skip="30">+30s</div>
+				</div>
+				<!--skip-->
+
+				<div class="control">
+					<p class="p_description">Volume:</p>
+					<input type="range" name="volume" min="0" max="1" step="0.05" value="1" class="slider" />
+				</div>
+				<!--volume-->
+				<div class="control">
+					<p class="p_description">Speed:</p>
+					<input type="range" name="playbackRate" min="0.5" max="2" step="0.1" value="1" class="slider" />
+				</div>
+				<!--speed-->
+			</div>
+			<!--control panel-->
+		</div>
+		<!--wrapper-->
+	</body>
+	<script>
+		const video = document.querySelector(".video");
+		const btn_play = document.querySelector(".div_btnPlay");
+		const btn_skip = document.querySelectorAll("[data-skip]");
+		const progress = document.querySelector(".span_progress");
+		const sliders = document.querySelectorAll(".slider");
+		const duration = document.querySelector(".span_duration");
+		function togglePlay() {
+			if (video.paused) {
+				video.play();
+				btn_play.textContent = "🔴";
+			} else {
+				video.pause();
+				btn_play.textContent = "🟢";
+			}
+		}
+
+		function skip() {
+			video.currentTime += parseFloat(this.dataset.skip);
+		}
+
+		function handleRangeUpdate() {
+			video[this.name] = this.value;
+		}
+
+		btn_play.addEventListener("click", togglePlay);
+		btn_skip.forEach((btn) => btn.addEventListener("click", skip));
+		video.addEventListener("timeupdate", () => (progress.textContent = ((video.currentTime / video.duration) * 100).toFixed(1) + "%"));
+		sliders.forEach((slider) => slider.addEventListener("input", handleRangeUpdate));
+		video.onloadedmetadata = () => {
+			duration.textContent = video.duration + "s";
+		};
+	</script>
+</html>
