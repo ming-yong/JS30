@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>JS30 - checklist</title>
+		<style>
+			@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+
+			* {
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+			}
+
+			html {
+				height: 100%;
+				width: 100%;
+			}
+
+			body {
+				height: 100%;
+				width: 100%;
+				font-family: "Montserrat", sans-serif;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.div_item {
+				display: flex;
+				justify-content: flex-start;
+				align-items: center;
+				font-size: 1rem;
+				line-height: 1.5rem;
+				border-bottom: 2px solid black;
+			}
+
+			.div_item:first-child {
+				border-top: 2px solid black;
+			}
+
+			.checkbox {
+				margin: 1rem;
+			}
+
+			input:checked + p {
+				text-decoration: line-through;
+			}
+
+			.div_buttons {
+				margin: 1rem 0;
+				width: 100%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.btn {
+				background: black;
+				color: white;
+				font-family: "Montserrat", sans-serif;
+				border: 2px solid black;
+				border-radius: 3px;
+				padding: 0.5rem;
+				margin: 1rem;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Checklist</h1>
+		<div class="div_checklist">
+			<div class="div_item">
+				<input type="checkbox" class="checkbox" />
+				<p class="p_item">Check to cross out item.</p>
+			</div>
+			<!--item-->
+			<div class="div_item">
+				<input type="checkbox" class="checkbox" />
+				<p class="p_item">To cross out consecutive items:</p>
+			</div>
+			<!--item-->
+			<div class="div_item">
+				<input type="checkbox" class="checkbox" />
+				<p class="p_item">Check one item.</p>
+			</div>
+			<!--item-->
+			<div class="div_item">
+				<input type="checkbox" class="checkbox" />
+				<p class="p_item">Hold Shift.</p>
+			</div>
+			<!--item-->
+			<div class="div_item">
+				<input type="checkbox" class="checkbox" />
+				<p class="p_item">Check another item.</p>
+			</div>
+			<!--item-->
+			<div class="div_item">
+				<input type="checkbox" class="checkbox" />
+				<p class="p_item">Every items in between should be set to checked!</p>
+			</div>
+			<!--item-->
+			<div class="div_buttons">
+				<input type="button" value="Reverse" class="btn btn_reverse" />
+				<input type="button" value="Clear" class="btn btn_clear" />
+			</div>
+			<!--buttons-->
+		</div>
+		<!--checklist-->
+	</body>
+	<script>
+		const checkboxes = document.querySelectorAll(".checkbox");
+		const btnReverse = document.querySelector(".btn_reverse");
+		const btnClear = document.querySelector(".btn_clear");
+		let lastChecked;
+
+		function handleCheck(e) {
+			let inBetween = false;
+			if (e.shiftKey && this.checked) {
+				checkboxes.forEach((checkbox) => {
+					if (checkbox === this || checkbox === lastChecked) {
+						inBetween = !inBetween;
+					}
+					if (inBetween) {
+						checkbox.checked = true;
+					}
+				});
+			}
+			lastChecked = this;
+		}
+
+		checkboxes.forEach((checkbox) => checkbox.addEventListener("click", handleCheck));
+		btnReverse.addEventListener("click", () => {
+			checkboxes.forEach((checkbox) => (checkbox.checked = !checkbox.checked));
+		});
+		btnClear.addEventListener("click", () => {
+			checkboxes.forEach((checkbox) => (checkbox.checked = false));
+		});
+	</script>
+</html>

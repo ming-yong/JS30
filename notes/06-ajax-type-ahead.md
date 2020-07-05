@@ -1,4 +1,4 @@
-# JS30-06-ajax-type-ahead
+# 06-ajax-type-ahead
 
 ![demo gif](../images/ajaxTypeAhead.gif)
 

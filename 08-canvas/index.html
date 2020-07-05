@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>JS30 - canvas</title>
+		<style>
+			@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+
+			* {
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+			}
+
+			html {
+				height: 100%;
+				width: 100%;
+			}
+
+			body {
+				height: 100%;
+				width: 100%;
+				font-family: "Montserrat", sans-serif;
+				display: flex;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas class="canvas"></canvas>
+	</body>
+	<script>
+		const canvas = document.querySelector(".canvas");
+		const ctx = canvas.getContext("2d");
+		canvas.width = innerWidth;
+		canvas.height = innerHeight;
+		ctx.lineJoin = "round";
+		ctx.lineCap = "round";
+		ctx.lineWidth = 5;
+
+		//instruction
+		ctx.font = "1rem Montserrat";
+		ctx.textAlign = "center";
+		ctx.fillText("Click and drag your mouse to draw.  Scroll up or down to adjust brush size. Press E to change between brush and eraser. Hold Shift to use magic brush!", canvas.width / 2, canvas.height / 2);
+
+		//draw
+		let useBrush = true;
+		let isDrawing = false;
+		let lastX = 0;
+		let lastY = 0;
+		let hue = 0;
+		function draw(e) {
+			if (!isDrawing) {
+				return;
+			}
+
+			if (useBrush) {
+				ctx.strokeStyle = "black";
+			} else {
+				ctx.strokeStyle = "white";
+			}
+
+			if (e.shiftKey && useBrush) {
+				ctx.strokeStyle = `hsl(${hue},100%,50%)`;
+				hue++;
+				if (hue >= 360) {
+					hue = 0;
+				}
+			}
+
+			ctx.beginPath();
+			//start from
+			ctx.moveTo(lastX, lastY);
+			//go to
+			ctx.lineTo(e.offsetX, e.offsetY);
+			ctx.stroke();
+			[lastX, lastY] = [e.offsetX, e.offsetY];
+		}
+
+		//resize brush
+		function size(e) {
+			if (e.wheelDelta > 0) {
+				ctx.lineWidth++;
+			} else {
+				ctx.lineWidth--;
+			}
+		}
+
+		canvas.addEventListener("mousedown", (e) => {
+			isDrawing = true;
+			[lastX, lastY] = [e.offsetX, e.offsetY];
+		});
+
+		window.addEventListener("keydown", (e) => {
+			if (e.code != "KeyE") {
+				return;
+			} else {
+				useBrush = !useBrush;
+			}
+		});
+
+		canvas.addEventListener("mousemove", draw);
+		canvas.addEventListener("wheel", size);
+		canvas.addEventListener("mouseup", () => (isDrawing = false));
+		canvas.addEventListener("mouseout", () => (isDrawing = false));
+	</script>
+</html>
