@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>JS30 - flashlight</title>
+		<style>
+			@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+
+			* {
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+			}
+
+			html {
+				height: 100%;
+				width: 100%;
+			}
+
+			body {
+				height: 100%;
+				width: 100%;
+				font-family: "Montserrat", sans-serif;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				background: black;
+			}
+
+			a {
+				font-size: 2rem;
+				margin: 1rem;
+				text-decoration: none;
+				color: black;
+			}
+
+			.flashlight {
+				transition: all 0.2s;
+				border-bottom: 2px solid white;
+				position: absolute;
+				top: 0;
+				background: white;
+				left: 0;
+				z-index: -1;
+				border-radius: 10px;
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<a href="#">Surprise!</a>
+		<a href="#">Hi, I am a link.</a>
+		<a href="#">You got me!</a>
+		<a href="#">Hello there</a>
+	</body>
+	<script>
+		const links = document.querySelectorAll("a");
+		const flashlight = document.createElement("span");
+		flashlight.classList.add("flashlight");
+		document.body.append(flashlight);
+
+		function flashlightOn() {
+			const linkCoords = this.getBoundingClientRect();
+			//when scroll, add up for top and left
+			const coords = {
+				width: linkCoords.width,
+				height: linkCoords.height,
+				top: linkCoords.top + window.scrollY,
+				left: linkCoords.left + window.screenX,
+			};
+			flashlight.style.width = `${coords.width}px`;
+			flashlight.style.height = `${coords.height}px`;
+			flashlight.style.transform = `translate(${coords.left}px,${coords.top}px)`;
+		}
+
+		links.forEach((link) => link.addEventListener("mouseenter", flashlightOn));
+	</script>
+</html>

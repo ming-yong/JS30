@@ -15,3 +15,6 @@ is a series of projects built with vanilla JS based on [JavaScript 30 by WesBos]
 11. Checklist that "remember" the check status after refresh using **local storage**. See [demo](https://ming-yong.github.io/JS30/15-taco-list/) and [note](./notes/15-taco-list.md).
 12. CSS text **shadow effect** during mouse move. See [demo](https://ming-yong.github.io/JS30/16-boo/) and [note](./notes/16-boo.md).
 13. **Photo booth** using web cam with different filters and downloadable photo. See [demo](https://ming-yong.github.io/JS30-19-photo-booth/) and [note](./notes/19-photo-booth.md).
+14. Note with **speech recognition**. See [demo](https://ming-yong.github.io/JS30-20-voice-note/) and [note](./notes/20-voice-note.md).
+15. A **"*follow along links*" effect**. See [demo](https://ming-yong.github.io/JS30/22-flashlight/) and [note](./notes/22-flashlight.md).
+16. **Speech synthesis** with control over rate, pitch, content.  See [demo](https://ming-yong.github.io/JS30/23-speech-synthesis/) and [note](./notes/23-speech-synthesis.md).

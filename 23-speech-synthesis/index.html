@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>JS30 - speech synthesis</title>
+		<style>
+			@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+
+			* {
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+			}
+
+			html {
+				height: 100%;
+				width: 100%;
+			}
+
+			body {
+				height: 100%;
+				width: 100%;
+				font-family: "Montserrat", sans-serif;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.div_voiceinator {
+				padding: 2rem;
+				width: 50rem;
+				margin: 0 auto;
+				border-radius: 1rem;
+				position: relative;
+				background: white;
+				overflow: hidden;
+				z-index: 1;
+				border: 2px solid black;
+			}
+
+			h1 {
+				text-align: center;
+			}
+
+			.div_voiceinator input,
+			.div_voiceinator button,
+			.div_voiceinator select,
+			.div_voiceinator textarea {
+				width: 100%;
+				display: block;
+				margin: 10px 0;
+				padding: 10px;
+				border: 0;
+				font-size: 1rem;
+				background: #f7f7f7;
+				outline: 0;
+			}
+
+			textarea {
+				height: 20rem;
+			}
+
+			.div_voiceinator button {
+				border: 2px solid black;
+				border-radius: 4px;
+				width: 49%;
+				float: left;
+				margin-bottom: 0;
+				font-size: 2rem;
+				cursor: pointer;
+				position: relative;
+			}
+
+			.div_voiceinator button:active {
+				top: 2px;
+			}
+
+			.div_voiceinator button:nth-of-type(1) {
+				margin-right: 2%;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="div_voiceinator">
+			<h1>The Voiceinator 5000</h1>
+			<select name="voice" id="voices">
+				<option id="option_display" value="">Select A Voice</option>
+			</select>
+			<label for="rate">Rate:</label>
+			<input name="rate" type="range" min="0" max="3" value="1" step="0.1" />
+			<label for="pitch">Pitch:</label>
+			<input name="pitch" type="range" min="0" max="2" step="0.1" />
+			<textarea name="text">Hello! I love JavaScript 👍</textarea>
+			<button id="btn_stop">Stop!</button>
+			<button id="btn_speak">Speak</button>
+		</div>
+		<!--voiceinator-->
+	</body>
+	<script>
+		const message = new SpeechSynthesisUtterance();
+		let voices = [];
+		const voicesDropdown = document.querySelector('[name="voice"]');
+		const options = document.querySelectorAll('[type="range"], [name="text"]');
+		const speakButton = document.querySelector("#btn_speak");
+		const stopButton = document.querySelector("#btn_stop");
+		const displayOption = document.querySelector("#option_display");
+		message.text = document.querySelector('[name="text"]').value;
+
+		function populateVoices() {
+			voices = this.getVoices();
+			voicesDropdown.innerHTML = voices
+				// .filter(voice => voice.lang.includes("en"))
+				.map((voice) => `<option value="${voice.name}">${voice.name}(${voice.lang})</option>`)
+				.join("");
+			displayOption.value = voice.name;
+		}
+
+		function setVoice() {
+			message.voice = voices.find((voice) => voice.name === this.value);
+			toggle();
+		}
+
+		function toggle(startOver = true) {
+			speechSynthesis.cancel(); //stop everything
+			if (startOver) {
+				speechSynthesis.speak(message);
+			}
+		}
+
+		function setOption() {
+			message[this.name] = this.value;
+			toggle();
+		}
+
+		speechSynthesis.addEventListener("voiceschanged", populateVoices);
+		voicesDropdown.addEventListener("change", setVoice);
+		options.forEach((option) => option.addEventListener("change", setOption));
+		speakButton.addEventListener("click", toggle);
+		stopButton.addEventListener("click", () => toggle(false)); //another way: toggle.bind(null,false)
+	</script>
+</html>
