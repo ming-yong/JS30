@@ -6,6 +6,63 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 		<link rel="stylesheet" href="./main.css" />
 		<title>JS30 - ajax type ahead</title>
+		<style>
+			@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+
+			* {
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+			}
+
+			html {
+				height: 100%;
+				width: 100%;
+			}
+
+			body {
+				height: 100%;
+				width: 100%;
+				font-family: "Montserrat", sans-serif;
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-start;
+				align-items: center;
+			}
+
+			h1 {
+				margin: 1rem;
+			}
+
+			.form_search {
+				margin: 1rem;
+				width: 50%;
+			}
+
+			.input_search {
+				width: 100%;
+				height: 40px;
+				border: 2px solid black;
+				padding: 0.5rem;
+			}
+
+			.ul_result {
+				margin: 1rem;
+			}
+
+			.li_result {
+				width: 100%;
+				list-style-type: none;
+				border-bottom: 2px solid black;
+				padding: 0.5rem;
+				display: flex;
+				justify-content: space-between;
+			}
+
+			.span_highlight {
+				background: yellow;
+			}
+		</style>
 	</head>
 	<body>
 		<h1>Population in cities of US</h1>
@@ -17,5 +74,56 @@
 		</form>
 	</body>
 
-	<script src="main.js"></script>
+	<script>
+		const endpoint = "https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json";
+
+		const cities = [];
+
+		fetch(endpoint)
+			.then((blob) => blob.json())
+			.then((data) => cities.push(...data));
+
+		function findMatches(wordToMatch, cities) {
+			return cities.filter((place) => {
+				//if the city or state matches what was searched
+				const regex = new RegExp(wordToMatch, "gi");
+				return place.city.match(regex) || place.state.match(regex);
+			});
+		}
+
+		function numberWithCommas(x) {
+			return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}
+
+		function displayMatches() {
+			if (this.value.length == 0) {
+				ul_result.innerHTML = `<li class="li_result">Filter for a city or state</li>`;
+			} else {
+				const matchArray = findMatches(this.value, cities);
+				if (matchArray.length > 0) {
+					const html = matchArray
+						.map((place) => {
+							const regex = new RegExp(this.value, "gi");
+							const cityName = place.city.replace(regex, `<span class="span_highlight">${this.value}</span>`);
+							const stateName = place.state.replace(regex, `<span class="span_highlight">${this.value}</span>`);
+							return `
+						<li class="li_result">
+							<span class="span_name">${cityName}, ${stateName}</span>
+							<span class="span_population">${numberWithCommas(place.population)}</span>
+						</li>
+					`;
+						})
+						.join("");
+					ul_result.innerHTML = html;
+				} else {
+					ul_result.innerHTML = `<li class="li_result">Result not found</li>`;
+				}
+			}
+		}
+
+		const input_search = document.querySelector(".input_search");
+		const ul_result = document.querySelector(".ul_result");
+
+		input_search.addEventListener("input", displayMatches);
+	</script>
 </html>

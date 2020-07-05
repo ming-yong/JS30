@@ -1,14 +1,8 @@
 # JS30-06-ajax-type-ahead
 
-![image: demonstration of ajax type ahead](https://github.com/ming-yong/JS30-06-ajax-type-ahead/blob/master/ajaxTypeAhead.gif)
+![demo gif](../images/ajaxTypeAhead.gif)
 
-Type-ahead search for population in cities of US. Built with vanilla JS and based on [JavaScript 30 by WesBos](https://github.com/wesbos/JavaScript30).
-
-## Running this project
-
-### Live version
-
-[https://ming-yong.github.io/JS30-06-ajax-type-ahead/](https://ming-yong.github.io/JS30-06-ajax-type-ahead/)
+[Back to home page](https://ming-yong.github.io/JS30/)
 
 ## User story
 
@@ -19,6 +13,7 @@ Type-ahead search for population in cities of US. Built with vanilla JS and base
 - **User story #5:** The interface will go back to default if I clear the input box.
 
 ## Notes
+
 ### Get the data of places
 
 The goal here is to get an array `cities` that contains every places.
