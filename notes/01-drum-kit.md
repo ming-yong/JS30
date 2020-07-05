@@ -1,5 +1,7 @@
 # JS30-01-drum kit
 
+[Back to home page](./README.md)
+
 ## User stories
 
 - **User story #1:** I can play drum kit pieces using keyboard.
