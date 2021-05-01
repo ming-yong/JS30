@@ -1,4 +1,4 @@
-# (archive) JS30
+# (archived)JS30
 
 ## About
 This repository contains 22 projects all based on "JavaScript30" by WesBos. All of them are using vanillaJS (pure JavaScript without any frameworks). I built these to learn basic JavaScript. 
